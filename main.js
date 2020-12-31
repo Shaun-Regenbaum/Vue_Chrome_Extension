@@ -100,8 +100,14 @@ Vue.component("switch-button", {
             switchValues: {
                 deep: true,
                 handler () {
-                    if (this.switchValues.masterSwitch == true) {
-                        
+                    bg.saveToStorage([
+                        this.switchValues.masterSwitch,
+                        this.switchValues.spoofSwitch,
+                        this.switchValues.redirectSwitch,
+                        this.switchValues.cookieSwitch,
+                        this.switchValues.javascriptSwitch
+                    ])
+                    chrome.tabs.reload()
                     }
                 }
 

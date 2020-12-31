@@ -5,3 +5,5 @@ chrome.webRequest.onBeforeSendHeaders.addListener(bypassPaywallOnInitialLoad, {
   types: ["main_frame"], }, 
   ["requestHeaders"]
 );
+
+chrome.tabs.onUpdated.addListener()
