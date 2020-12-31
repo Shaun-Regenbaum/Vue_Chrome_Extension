@@ -3,6 +3,7 @@
 
 function setDefaultStorage(details) {
     // We will eventually want to only do this on install
+    console.log("Setting Default Lists")
     if (details.reason == 'install' || details.reason == 'update') {
         chrome.storage.sync.set({
             blacklistDict: blacklistDict,
@@ -27,17 +28,14 @@ function getInitialSwitchValues() {
     return values;
 
 }
+// Be Careful:
+// There can't be any inconsistency between how many lists you have and the amount of booleans you are passing in.
+// They should both be arrays.
 
 function saveToStorage(bools) {
     const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"];
     const url = getCurrentRootUrl();
     let values = {};
-
-    if (bools.length == lists.length){
-        continue;
-    } else {
-        console.log("There is some inconsistency with how many lists you have and the amount of booleans you are pasisng in. They should both be arrays.")
-    }
 
     chrome.storage.sync.get(lists,
         (result) => {
@@ -54,7 +52,3 @@ function saveToStorage(bools) {
         });
     chrome.storage.sync.set(values);
 };
-
-    chrome.storage.sync.set([item])
-
-}

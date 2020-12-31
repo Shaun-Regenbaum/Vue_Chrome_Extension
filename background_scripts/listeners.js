@@ -1,9 +1,9 @@
 chrome.runtime.onInstalled.addListener(setDefaultStorage);
 
-chrome.webRequest.onBeforeSendHeaders.addListener(bypassPaywallOnInitialLoad, {
+chrome.webRequest.onBeforeSendHeaders.addListener(bypassPaywallOnLoad, {
   urls: ["<all_urls>"],
   types: ["main_frame"], }, 
-  ["requestHeaders"]
+  ["requestHeaders", "blocking", "extraHeaders"]
 );
 
 chrome.tabs.onUpdated.addListener()

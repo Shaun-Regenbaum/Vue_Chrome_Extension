@@ -9,7 +9,7 @@
     "background_scripts/url_processing.js",
     "background_scripts/default_lists.js",
     "background_scripts/storage.js",
-    "background_scripts/initial_action.js",
+    "background_scripts/bypass.js",
     "background_scripts/listeners.js"
     ]
     },
@@ -19,6 +19,7 @@
     },
     "permissions": [
       "webRequest", 
+      "webRequestBlocking", 
       "tabs",
       "storage",
       "http://*/", 

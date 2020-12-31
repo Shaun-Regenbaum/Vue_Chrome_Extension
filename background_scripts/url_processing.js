@@ -1,4 +1,4 @@
-cleanUpUrl = (url) => {
+function cleanUpUrl(url) {
     try {
         //Form should be in http[s]://root.com/abcdefg
         if (url.substring(0,4) !== "http") {
@@ -33,15 +33,23 @@ cleanUpUrl = (url) => {
 
 function currentUrl(callback) { 
     chrome.tabs.query({active:true, currentWindow:true},function(tabs){
+        if (tabs == undefined) {
+            console.log("Empty?")
+        } else {
+            console.log("Not Empty")
+        }
+        console.log(tabs);
         callback(this.cleanUpUrl(tabs[0].url));
       });
 }
 
 function returnRootUrl(url) {
-    return url;
+    const rootUrl = url;
+    return rootUrl;
 }
 
 // Not sure if this is ok to do?
 function getCurrentRootUrl() { 
+    console.log(currentUrl(returnRootUrl));
     return currentUrl(returnRootUrl);
 }

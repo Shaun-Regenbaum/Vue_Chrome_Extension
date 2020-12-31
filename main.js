@@ -34,36 +34,38 @@ Vue.component("switch-button", {
   
   // This is our main component that brings everything together. 
   // If you wish to add more components, define them above.
-  Vue.component("main", {
+  Vue.component("Main", {
     template:
-    `<h3>Vue Chrome Extension</h3>
-        <h4>By: Shaun Regenbaum</h4>
-        <h4>Bypass Paywalls on This Site?</h4>
-        <switch-button v-model="masterSwitch">
-            <b v-if="masterSwitch"> ON </b>
-            <b v-else> OFF </b>
-        </switch-button>
-    <h3>Advanced Options (for bugs):</h3>
-        <h4>Spoof as an Adbot?</h4>
-        <switch-button v-model="spoofSwitch">
-            <b v-if="spoofSwitch"> ON </b>
-            <b v-else> OFF </b>
-        </switch-button>
-        <h4>Redirect Referer?</h4>
-        <switch-button v-model="redirectSwitch">
-            <b v-if="redirectSwitch"> ON </b>
-            <b v-else> OFF </b>
-        </switch-button>
-        <h4>Block Cookies?</h4>
-        <switch-button v-model="cookieSwitch ">
-            <b v-if="cookieSwitch"> ON </b>
-            <b v-else> OFF </b>
-        </switch-button>
-        <h4>Block JS?</h4>
-        <switch-button v-model="javascriptSwitch">
-            <b v-if="javascriptSwitch"> ON </b>
-            <b v-else> OFF </b>
-        </switch-button>`,
+    `<div>
+        <h3>Vue Chrome Extension</h3>
+            <h4>By: Shaun Regenbaum</h4>
+            <h4>Bypass Paywalls on This Site?</h4>
+            <switch-button v-model="switchValues.masterSwitch">
+                <b v-if="switchValues.masterSwitch"> ON </b>
+                <b v-else> OFF </b>
+            </switch-button>
+        <h3>Advanced Options (for bugs):</h3>
+            <h4>Spoof as an Adbot?</h4>
+            <switch-button v-model="switchValues.spoofSwitch">
+                <b v-if="switchValues.spoofSwitch"> ON </b>
+                <b v-else> OFF </b>
+            </switch-button>
+            <h4>Redirect Referer?</h4>
+            <switch-button v-model="switchValues.redirectSwitch">
+                <b v-if="switchValues.redirectSwitch"> ON </b>
+                <b v-else> OFF </b>
+            </switch-button>
+            <h4>Block Cookies?</h4>
+            <switch-button v-model="switchValues.cookieSwitch ">
+                <b v-if="switchValues.cookieSwitch"> ON </b>
+                <b v-else> OFF </b>
+            </switch-button>
+            <h4>Block JS?</h4>
+            <switch-button v-model="switchValues.javascriptSwitch">
+                <b v-if="switchValues.javascriptSwitch"> ON </b>
+                <b v-else> OFF </b>
+            </switch-button>
+        </div>`,
         data: function () {
             return {
                 switchValues: {
@@ -108,20 +110,15 @@ Vue.component("switch-button", {
                         this.switchValues.javascriptSwitch
                     ])
                     chrome.tabs.reload()
-                    }
                 }
-
             }
+
         }
-     
   })
 
   // This is our root Vue instance that simply calls our main components  
   new Vue({
     el: '#app',
-    components: {
-        main
-    }
   })
   
   
