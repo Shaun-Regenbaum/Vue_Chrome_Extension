@@ -32,7 +32,8 @@ async function getInitialSwitchValues() {
 
     const values = {};
 
-    for (list in await storageGetAsync(lists)){
+    const result = await storageGetAsync(lists).then()
+    for (list in lists){
         values[list] = (rootUrl in result[list]);
     }
     console.log(values);
