@@ -34,7 +34,7 @@ Vue.component("switch-button", {
   
   // This is our main component that brings everything together. 
   // If you wish to add more components, define them above.
-  Vue.component("Main", {
+  Vue.component("Master", {
     template:
     `<div>
         <h3>Vue Chrome Extension</h3>
@@ -68,7 +68,7 @@ Vue.component("switch-button", {
         </div>`,
         data: function () {
             return {
-                switchValues: {
+                switchValues: { 
                     masterSwitch: null,
                     spoofSwitch: null,
                     redirectSwitch: null,
@@ -80,22 +80,27 @@ Vue.component("switch-button", {
 
         // This lifecycle hook set our initial switch values to which white/blacklists the current site is in:
         created: function () {
-            const { masterSwitch, spoofSwitch, redirectSwitch, cookieSwitch, javascriptSwitch } = bg.getInitialSwitchValues();
-            this.switchValues.masterSwitch = masterSwitch;
-            this.switchValues.spoofSwitch = spoofSwitch;
-            this.switchValues.redirectSwitch = redirectSwitch;
-            this.switchValues.cookieSwitch = cookieSwitch;
-            this.switchValues.javascriptSwitch = javascriptSwitch;
+            bg.getInitialSwitchValues().then(valuesDict => {
+                this.switchValues.masterSwitch = valuesDict.blacklistDict;
+                this.switchValues.spoofSwitch = valuesDict.spoofWhitelistDict;
+                this.switchValues.redirectSwitch = valuesDict.redirectWhitelistDict;
+                this.switchValues.cookieSwitch = valuesDict.cookieWhitelistDict;
+                this.switchValues.javascriptSwitch = valuesDict.javascriptWhitelistDict;  
+            });
+            console.log("Created");
+ 
         },
 
         beforeDestroyed: function () {
+            const url = window.location.href;
+            console.log("Saving to storage")
             bg.saveToStorage([
                 this.switchValues.masterSwitch,
                 this.switchValues.spoofSwitch,
                 this.switchValues.redirectSwitch,
                 this.switchValues.cookieSwitch,
                 this.switchValues.javascriptSwitch
-            ])
+            ], url)
         },
 
         watch: {

@@ -2,7 +2,7 @@ function cleanUpUrl(url) {
     try {
         //Form should be in http[s]://root.com/abcdefg
         if (url.substring(0,4) !== "http") {
-            return "failed";
+            return false;
         }
 
         //Make into root.com/abcdefg
@@ -19,7 +19,7 @@ function cleanUpUrl(url) {
         parts = root.split(".");
 
         if (parts.length < 2) {
-            return "failed";
+            return false;
         }
 
         root = parts[parts.length - 2] + "." + parts[parts.length - 1];
@@ -27,29 +27,30 @@ function cleanUpUrl(url) {
         return "*://*." + root + "/*"
     }
     catch {
-        return "failed";
+        return false;
     }
   }
 
 function currentUrl(callback) { 
     chrome.tabs.query({active:true, currentWindow:true},function(tabs){
-        if (tabs == undefined) {
-            console.log("Empty?")
-        } else {
-            console.log("Not Empty")
-        }
         console.log(tabs);
         callback(this.cleanUpUrl(tabs[0].url));
-      });
+    });
 }
 
-function returnRootUrl(url) {
-    const rootUrl = url;
-    return rootUrl;
-}
-
-// Not sure if this is ok to do?
-function getCurrentRootUrl() { 
-    console.log(currentUrl(returnRootUrl));
-    return currentUrl(returnRootUrl);
+function currentUrlAsync() { 
+    return new Promise( (resolve, reject) => {
+       chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
+            console.log(tabs);
+            if (tabs) {
+              const processedURL = this.cleanUpUrl(tabs[0].url)
+              if (processedURL) {
+                  resolve(processedURL);
+              }
+            } else {
+               reject("Oh no!")
+            }
+            
+        });  
+    })
 }

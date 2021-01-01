@@ -14,41 +14,54 @@ function setDefaultStorage(details) {
         });
     }
 }
+function storageGetAsync(keys) { 
+    return new Promise( (resolve, reject) => {
+       chrome.storage.sync.get(keys, (result) => {
+            if (result) {
+               resolve(result);
+            } else {
+               reject("Oh no!")
+            }
+        });  
+    })
+}
 
-function getInitialSwitchValues() {
+async function getInitialSwitchValues() {
     const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"];
-    const url = getCurrentRootUrl();
-    const values = {};
-    chrome.storage.sync.get(lists,
-    (result) => {
-        for (list in lists) {
-            values[list] = (url in result[list]);
-        }
-    });
-    return values;
+    const rootUrl = await currentUrlAsync();
 
+    const values = {};
+
+    for (list in await storageGetAsync(lists)){
+        values[list] = (rootUrl in result[list]);
+    }
+    console.log(values);
+    return values;
 }
 // Be Careful:
 // There can't be any inconsistency between how many lists you have and the amount of booleans you are passing in.
 // They should both be arrays.
 
-function saveToStorage(bools) {
+async function saveToStorage(bools, url) {
     const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"];
-    const url = getCurrentRootUrl();
+    const rootUrl = cleanUpUrl(url);
+
+    if (rootUrl === "failed") {
+        return;
+    }
+
     let values = {};
 
-    chrome.storage.sync.get(lists,
-        (result) => {
-            let updatedList = {}
-            for (i = 0; i < lists.length; i++ ){
-                updatedList = result[lists[i]];
-                if (bools[i]) {
-                    updatedList[url] = bools[i];
-                } else {
-                    delete updatedList[url];
-                }
-                values.lists[i] = updatedList;
+    const result = await storageGetAsync(lists);
+    let updatedList = {}
+        for (i = 0; i < lists.length; i++ ){
+            updatedList = result[lists[i]];
+            if (bools[i]) {
+                updatedList[rootUrl] = bools[i];
+            } else {
+                delete updatedList[rootUrl];
+            }
+            values.lists[i] = updatedList;
             } 
-        });
-    chrome.storage.sync.set(values);
+    chrome.storage.sync.set(values.then());
 };
