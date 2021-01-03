@@ -43,14 +43,9 @@ async function getInitialSwitchValues() {
 // There can't be any inconsistency between how many lists you have and the amount of booleans you are passing in.
 // They should both be arrays.
 
-async function saveToStorage(bools, url) {
+async function saveToStorage(bools) {
     const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"];
-    const rootUrl = cleanUpUrl(url);
-
-    if (rootUrl === "failed") {
-        return;
-    }
-
+    const rootUrl = await currentUrlAsync();
     let values = {};
 
     const result = await storageGetAsync(lists);

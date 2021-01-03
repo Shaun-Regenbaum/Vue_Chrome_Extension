@@ -92,7 +92,6 @@ Vue.component("switch-button", {
         },
 
         beforeDestroyed: function () {
-            const url = window.location.href;
             console.log("Saving to storage")
             bg.saveToStorage([
                 this.switchValues.masterSwitch,
@@ -100,7 +99,7 @@ Vue.component("switch-button", {
                 this.switchValues.redirectSwitch,
                 this.switchValues.cookieSwitch,
                 this.switchValues.javascriptSwitch
-            ], url)
+            ])
         },
 
         watch: {
