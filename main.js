@@ -95,10 +95,10 @@ Vue.component("switch-button", {
             bg.getInitialSwitchValues().then(valuesDict => {
                 console.log(valuesDict);
                 this.switchValues.masterSwitch = valuesDict.blacklistDict;
-                this.switchValues.spoofSwitch = valuesDict.spoofWhitelistDict;
-                this.switchValues.redirectSwitch = valuesDict.redirectWhitelistDict;
-                this.switchValues.cookieSwitch = valuesDict.cookieWhitelistDict;
-                this.switchValues.javascriptSwitch = valuesDict.javascriptWhitelistDict;  
+                this.switchValues.spoofSwitch = !(valuesDict.spoofWhitelistDict);
+                this.switchValues.redirectSwitch = !(valuesDict.redirectWhitelistDict);
+                this.switchValues.cookieSwitch = !(valuesDict.cookieWhitelistDict);
+                this.switchValues.javascriptSwitch = !(valuesDict.javascriptWhitelistDict);  
             });
            
  
