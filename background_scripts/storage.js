@@ -27,37 +27,60 @@ function storageGetAsync(keys) {
 }
 
 async function getInitialSwitchValues() {
+
     const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"];
-    const rootUrl = await currentUrlAsync();
+   
+    const rootUrl = await currentUrlAsync(); // This is returning a Promise
+    const result = await storageGetAsync(lists); // This is returning a Promise
 
-    const values = {};
+    const values = Promise.all([rootUrl, result]).then((results) => {
+        
+        const values = {}
+        console.log("Results: ", results[0], results[1])
+        for (i = 0; i < lists.length; i++ ){
+ 
+            // Results[0] = Current Url
+            // Results[1] = Site Lists in Storage
+            values[lists[i]] = (String(results[0]) in results[1][lists[i]]);
+        }
 
-    const result = await storageGetAsync(lists).then()
-    for (list in lists){
-        values[list] = (rootUrl in result[list]);
-    }
-    console.log(values);
+        console.log("Values: ", values);
+        return values;
+    });
     return values;
 }
+
 // Be Careful:
 // There can't be any inconsistency between how many lists you have and the amount of booleans you are passing in.
 // They should both be arrays.
-
 async function saveToStorage(bools) {
+    
     const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"];
-    const rootUrl = await currentUrlAsync();
-    let values = {};
 
-    const result = await storageGetAsync(lists);
-    let updatedList = {}
+    const rootUrl = await currentUrlAsync(); // This is returning a Promise
+    const result = await storageGetAsync(lists); // This is returning a Promise
+
+
+    Promise.all([rootUrl, result]).then((results) => {
+
+        
+        let values = {};
+        let updatedList = {}
+
+        // Results[0] = Current Url
+        // Results[1] = Site Lists in Storage
+        console.log("Results: ", results[0], results[1])
+
         for (i = 0; i < lists.length; i++ ){
-            updatedList = result[lists[i]];
+
+            updatedList = results[1][lists[i]];
             if (bools[i]) {
-                updatedList[rootUrl] = bools[i];
+                updatedList[results[0]] = bools[i];
             } else {
-                delete updatedList[rootUrl];
+                delete updatedList[results[0]];
             }
-            values.lists[i] = updatedList;
+            values[lists[i]] = updatedList;
             } 
-    chrome.storage.sync.set(values.then());
+        chrome.storage.sync.set(values);
+    });
 };

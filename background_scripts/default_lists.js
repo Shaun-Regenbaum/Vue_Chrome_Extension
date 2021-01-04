@@ -89,9 +89,12 @@ let cookieWhitelistDict = {
     "*://*.newyorker.com/*": "1",
     "*://*.theathletic.com/*": "1",
     "*://*.theathletic.co.uk/*": "1",
-    "*://*.businessinsider.com/*": "1"
+    "*://*.businessinsider.com/*": "1",
+    "*://*.google.com/*": "1"
 }
 
 let javascriptWhitelistDict = {
+    "*://*.medium.com/*": "1",
+    "*://*.google.com/*": "1"
 }
 

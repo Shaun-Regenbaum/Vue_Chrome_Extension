@@ -31,6 +31,8 @@ function cleanUpUrl(url) {
     }
   }
 
+
+// Callback Version of getting current Url
 function currentUrl(callback) { 
     chrome.tabs.query({active:true, currentWindow:true},function(tabs){
         console.log(tabs);
@@ -38,19 +40,20 @@ function currentUrl(callback) {
     });
 }
 
+
+// Promise Version of getting Url
 function currentUrlAsync() { 
     return new Promise( (resolve, reject) => {
        chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-            console.log(tabs);
-            if (tabs) {
+            console.log(tabs[0].url);
+            if (tabs[0].url) {
               const processedURL = this.cleanUpUrl(tabs[0].url)
               if (processedURL) {
                   resolve(processedURL);
               }
             } else {
                reject("Oh no!")
-            }
-            
+            } 
         });  
     })
 }

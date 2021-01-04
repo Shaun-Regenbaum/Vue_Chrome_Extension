@@ -5,6 +5,8 @@
 
 function bypassPaywallOnLoad(http_details) {
     const rootUrl = cleanUpUrl(http_details.url)
+
+    // The following is done asynchronously (I think)
     chrome.storage.sync.get(["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"],
     (result) => { 
        
@@ -13,27 +15,27 @@ function bypassPaywallOnLoad(http_details) {
         if (!(rootUrl in result.blacklistDict)) {
             enableCookies(rootUrl);
             enableJavascript(rootUrl);
-        }
-
-        if (!(rootUrl in result.spoofWhitelistDict)) {
-            adbotSpoof(http_details);
-        }
-
-        if (!(rootUrl in result.redirectWhitelistDict)) {
-            redirectReferer(http_details, 'https://t.co/');
-        }
-
-        if (!(rootUrl in result.cookieWhitelistDict)) { 
-            blockCookies(rootUrl);
         } else {
-            enableCookies(rootUrl);
-        }
+            if (!(rootUrl in result.spoofWhitelistDict)) {
+                adbotSpoof(http_details);
+            }
 
-        if (!(rootUrl in result.javascriptWhitelistDict)) {
-            blockJavascript(rootUrl);
-        } else {
-            enableJavascript(rootUrl);
-        }
+            if (!(rootUrl in result.redirectWhitelistDict)) {
+                redirectReferer(http_details, 'https://t.co/');
+            }
+
+            if (!(rootUrl in result.cookieWhitelistDict)) { 
+                blockCookies(rootUrl);
+            } else {
+                enableCookies(rootUrl);
+            }
+
+            if (!(rootUrl in result.javascriptWhitelistDict)) {
+                blockJavascript(rootUrl);
+            } else {
+                enableJavascript(rootUrl);
+            }
+        }    
     });
     return {requestHeaders: http_details.requestHeaders};
 }

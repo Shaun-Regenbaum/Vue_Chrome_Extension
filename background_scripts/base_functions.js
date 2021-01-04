@@ -21,7 +21,7 @@ function adbotSpoof(http_details) {
         "value": "66.249.66.1"
     })
 
-    console.log("Spoofing as Google Crawler")
+    // console.log("Spoofing as Google Crawler")
     http_details.requestHeaders = http_details.requestHeaders.filter(function(header){
         if ( header.name === "User-Agent" || header.name === "X-Forwarded-For"){
             return false
@@ -40,7 +40,7 @@ function redirectReferer(http_details, referer = 'https://t.co/'){
         "name": "Referer",
         "value": referer
       })
-      console.log("Changed Header to Twitter")
+    //   console.log("Changed Header to Twitter")
 }
 
 function blockCookies(root_url){
@@ -48,7 +48,7 @@ function blockCookies(root_url){
         'primaryPattern': root_url,
         'setting': 'block'
       });
-      console.log("Blocked Cookies")
+    //   console.log("Blocked Cookies")
 }
 
 function enableCookies(root_url){
@@ -56,7 +56,7 @@ function enableCookies(root_url){
         'primaryPattern': root_url,
         'setting': 'allow'
       });
-      console.log("Enabled Cookies")
+    //   console.log("Enabled Cookies")
 }
 
 function blockJavascript(root_url){
@@ -64,7 +64,7 @@ function blockJavascript(root_url){
         'primaryPattern': root_url,
         'setting': 'block'
     })
-    console.log("Blocked Javascript")
+    // console.log("Blocked Javascript")
 }
 
 function enableJavascript(root_url){
@@ -72,7 +72,7 @@ function enableJavascript(root_url){
         'primaryPattern': root_url,
         'setting': 'allow'
     })
-    console.log("Enabled Javascript")
+    // console.log("Enabled Javascript")
 }
 
 
