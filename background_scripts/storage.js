@@ -14,6 +14,9 @@ function setDefaultStorage(details) {
         });
     }
 }
+
+// This is a short function to turn Chrome's callback system into a promise
+// 
 function storageGetAsync(keys) { 
     return new Promise( (resolve, reject) => {
        chrome.storage.sync.get(keys, (result) => {

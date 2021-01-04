@@ -63,12 +63,12 @@ Vue.component("switch-button", {
                 <b v-if="switchValues.redirectSwitch"> ON </b>
                 <b v-else> OFF </b>
             </switch-button>
-            <h4>Block Cookies?</h4>
+            <h4>Keep Cookies?</h4>
             <switch-button v-model="switchValues.cookieSwitch ">
                 <b v-if="switchValues.cookieSwitch"> ON </b>
                 <b v-else> OFF </b>
             </switch-button>
-            <h4>Block JS?</h4>
+            <h4>Keep JS?</h4>
             <switch-button v-model="switchValues.javascriptSwitch">
                 <b v-if="switchValues.javascriptSwitch"> ON </b>
                 <b v-else> OFF </b>
@@ -95,10 +95,10 @@ Vue.component("switch-button", {
             bg.getInitialSwitchValues().then(valuesDict => {
                 console.log(valuesDict);
                 this.switchValues.masterSwitch = valuesDict.blacklistDict;
-                this.switchValues.spoofSwitch = !(valuesDict.spoofWhitelistDict);
-                this.switchValues.redirectSwitch = !(valuesDict.redirectWhitelistDict);
-                this.switchValues.cookieSwitch = !(valuesDict.cookieWhitelistDict);
-                this.switchValues.javascriptSwitch = !(valuesDict.javascriptWhitelistDict);  
+                this.switchValues.spoofSwitch = valuesDict.spoofWhitelistDict;
+                this.switchValues.redirectSwitch = valuesDict.redirectWhitelistDict;
+                this.switchValues.cookieSwitch = valuesDict.cookieWhitelistDict;
+                this.switchValues.javascriptSwitch = valuesDict.javascriptWhitelistDict;  
             });
            
  
