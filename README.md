@@ -16,3 +16,7 @@ Sadly, Chrome does not support this at the current moment, thus you will have to
 
 ## Recognition
 Special thanks to [Dan Jutan](https://github.com/jutanium) for explaining the horrors of promises and [Matthew Sklar](https://github.com/matthewsklar) for the sanity checks.
+
+
+## Development
+Working on the front end to make it look nicer.
