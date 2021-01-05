@@ -13,3 +13,6 @@ In order to use it simply follow these directions:
 ## Notes
 In order to use this chrome extension on mobile, you must use a Chromium based mobile browser that allows mobile extensions.
 Sadly, Chrome does not support this at the current moment, thus you will have to use a browser like Kiwi.
+
+## Recognition
+Special thanks to [Dan Jutan](https://github.com/jutanium) for explaining the horrors of promises and [Matthew Sklar](https://github.com/matthewsklar) for the sanity checks.

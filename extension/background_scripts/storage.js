@@ -72,7 +72,6 @@ async function saveToStorage(bools) {
 
         // Results[0] = Current Url
         // Results[1] = Site Lists in Storage
-        console.log("Results: ", results[0], results[1])
 
         for (i = 0; i < lists.length; i++ ){
 

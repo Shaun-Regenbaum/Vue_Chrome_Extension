@@ -45,7 +45,6 @@ function currentUrl(callback) {
 function currentUrlAsync() { 
     return new Promise( (resolve, reject) => {
        chrome.tabs.query({active:true, currentWindow:true}, function(tabs){
-            console.log(tabs[0].url);
             if (tabs[0].url) {
               const processedURL = this.cleanUpUrl(tabs[0].url)
               if (processedURL) {
