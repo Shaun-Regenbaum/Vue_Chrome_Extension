@@ -5,7 +5,7 @@ First of all, this extension **only** works on Chromium based browsers (so Googl
 
 In order to use it simply follow these directions:
 1. Download the "extension" folder or clone the repository.
-2. Go to the chrome extensions page (You can do this through options or simply go to chrome:\\extensions).
+2. Go to the chrome extensions page (you can do this through options or simply go to chrome:\\\\extensions).
 3. Turn on Developer Mode in the top right of the page.
 4. Click on the "Load Unpacked" button on the top left of the screen and select the "extension" folder.
 5. That's it, it should be installed and working like a normal chrome extension.
