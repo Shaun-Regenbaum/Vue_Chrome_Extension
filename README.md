@@ -1,9 +1,9 @@
 # Vue_Chrome_Extension
 ### This is a Vue Chrome Extension Boilerplate that demonstrates how to make a paywall remover.
-#### First of all, this extension **only** works on Chromium based browsers (so Google Chrome, etc...)
-#### Second of all, this extension can **only** remove paywalls on websites that offer at least one free article.
+- First of all, this extension **only** works on Chromium based browsers (so Google Chrome, etc...)
+- Second of all, this extension can **only** remove paywalls on websites that offer at least one free article.
 
-In order to use it simply follow these directions:
+#### In order to use it simply follow these directions:
 1. Download the "extension" folder through the latest release (on the right side of the screen) or clone the repository.
 2. Go to the chrome extensions page (you can do this through options or simply go to chrome:\\\\extensions).
 3. Turn on Developer Mode on the top right of the page.
