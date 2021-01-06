@@ -1,6 +1,7 @@
 // This file contains the base functionality that our front-end can call
 // There are 6 functions that all use the chrome api:
-// 1) A function that manipulates the http headers to spoof as an adbot
+
+// 1) A function that manipulates the http headers to spoof as a google adbot
 // 2) a function that manipulates the http header to change the referring website
 // 3) A function that blocks cookies
 // 4) A function that enables cookies
@@ -9,8 +10,15 @@
 
 function adbotSpoof(http_details) {
 
-    var google_adbot_UA = "Mozilla/5.0 AppleWebKit/537.36 (KHTML, like Gecko; compatible; Googlebot/2.1; +http://www.google.com/bot.html) Chrome/W.X.Y.Z‡ Safari/537.36"
-    
+    var google_adbot_UA = "Mozilla/5.0 (Linux; Android 6.0.1; Nexus 5X Build/MMB29P) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/W.X.Y.Z‡ Mobile Safari/537.36 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)"
+
+    http_details.requestHeaders = http_details.requestHeaders.filter(function(header){
+        if ( header.name === "User-Agent" || header.name === "X-Forwarded-For"){
+            return false
+        }
+        return true
+    })
+
     http_details.requestHeaders.push({
         "name": "User-Agent",
         "value": google_adbot_UA
@@ -19,13 +27,6 @@ function adbotSpoof(http_details) {
     http_details.requestHeaders.push({
         "name": "X-Forwarded-For",
         "value": "66.249.66.1"
-    })
-
-    http_details.requestHeaders = http_details.requestHeaders.filter(function(header){
-        if ( header.name === "User-Agent" || header.name === "X-Forwarded-For"){
-            return false
-        }
-        return true
     })
 
     console.log("Spoofing as Google Crawler")

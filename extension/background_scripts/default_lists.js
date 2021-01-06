@@ -95,6 +95,14 @@ let cookieWhitelistDict = {
 
 let javascriptWhitelistDict = {
     "*://*.medium.com/*": "1",
+    "*://*.towardsdatascience.com/*": "1",
+    "*://*.nytimes.com/*": "1",
+    "*://*.quora.com/*": "1",
+    "*://*.wired.com/*": "1",
+    "*://*.newyorker.com/*": "1",
+    "*://*.theathletic.com/*": "1",
+    "*://*.theathletic.co.uk/*": "1",
+    "*://*.businessinsider.com/*": "1",
     "*://*.google.com/*": "1"
 }
 
