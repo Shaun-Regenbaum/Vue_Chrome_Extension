@@ -2,6 +2,7 @@
 This is a Vue Chrome Extension Boilerplate that demonstrates how to make a paywall remover.
 
 First of all, this extension **only** works on Chromium based browsers (so Google Chrome, etc...)
+
 Second of all, this extension can **only** remove paywalls on websites that offer at least one free article.
 
 In order to use it simply follow these directions:
