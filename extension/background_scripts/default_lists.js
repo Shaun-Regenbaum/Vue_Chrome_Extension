@@ -93,7 +93,7 @@ let cookieWhitelistDict = {
     "*://*.google.com/*": "1"
 }
 
-let javascriptWhitelistDict = {
+let javascriptBlacklistDict = {
     "*://*.medium.com/*": "1",
     "*://*.towardsdatascience.com/*": "1",
     "*://*.nytimes.com/*": "1",

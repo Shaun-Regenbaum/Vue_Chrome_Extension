@@ -94,10 +94,10 @@ Vue.component("switch-button", {
             bg.getInitialSwitchValues().then(valuesDict => {
                 console.log(valuesDict);
                 this.switchValues.masterSwitch = valuesDict.blacklistDict;
-                this.switchValues.spoofSwitch = !valuesDict.spoofWhitelistDict;
-                this.switchValues.redirectSwitch = !valuesDict.redirectWhitelistDict;
-                this.switchValues.cookieSwitch = !valuesDict.cookieWhitelistDict;
-                this.switchValues.javascriptSwitch = !valuesDict.javascriptWhitelistDict;  
+                this.switchValues.spoofSwitch = !valuesDict.spoofWhitelistDict && valuesDict.blacklistDict;
+                this.switchValues.redirectSwitch = !valuesDict.redirectWhitelistDict && valuesDict.blacklistDict;
+                this.switchValues.cookieSwitch = !valuesDict.cookieWhitelistDict && valuesDict.blacklistDict;
+                this.switchValues.javascriptSwitch = valuesDict.javascriptBlacklistDict && valuesDict.blacklistDict;  
             });
            
  
@@ -110,10 +110,10 @@ Vue.component("switch-button", {
                     console.log("Saving to storage on watch")
                     bg.saveToStorage([
                         this.switchValues.masterSwitch,
-                        !this.switchValues.spoofSwitch,
-                        !this.switchValues.redirectSwitch,
-                        !this.switchValues.cookieSwitch,
-                        !this.switchValues.javascriptSwitch
+                        !this.switchValues.spoofSwitch && this.switchValues.masterSwitch,
+                        !this.switchValues.redirectSwitch && this.switchValues.masterSwitch,
+                        !this.switchValues.cookieSwitch && this.switchValues.masterSwitch,
+                        this.switchValues.javascriptSwitch
                     ])
                     chrome.tabs.reload();
                 }

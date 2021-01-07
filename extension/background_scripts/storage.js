@@ -10,7 +10,7 @@ function setDefaultStorage(details) {
             spoofWhitelistDict: spoofWhitelistDict,
             redirectWhitelistDict: redirectWhitelistDict,
             cookieWhitelistDict: cookieWhitelistDict,
-            javascriptWhitelistDict: javascriptWhitelistDict
+            javascriptBlacklistDict: javascriptBlacklistDict
         });
     }
 }

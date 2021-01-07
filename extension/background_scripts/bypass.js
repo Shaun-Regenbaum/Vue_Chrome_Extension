@@ -30,7 +30,7 @@ function bypassPaywallOnLoad(http_details) {
                 enableCookies(rootUrl);
             }
 
-            if (!(rootUrl in result.javascriptWhitelistDict)) {
+            if (rootUrl in result.javascriptBlacklistDict) {
                 blockJavascript(rootUrl);
             } else {
                 enableJavascript(rootUrl);
