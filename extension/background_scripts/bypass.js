@@ -7,7 +7,7 @@ function bypassPaywallOnLoad(http_details) {
     const rootUrl = cleanUpUrl(http_details.url)
 
     // The following is done asynchronously (I think)
-    chrome.storage.sync.get(["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"],
+    chrome.storage.sync.get(["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptBlacklistDict"],
     (result) => { 
        
         console.log("Working on " + rootUrl)

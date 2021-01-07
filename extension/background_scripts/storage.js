@@ -31,7 +31,7 @@ function storageGetAsync(keys) {
 
 async function getInitialSwitchValues() {
 
-    const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"];
+    const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptBlacklistDict"];
    
     const rootUrl = await currentUrlAsync(); // This is returning a Promise
     const result = await storageGetAsync(lists); // This is returning a Promise
@@ -58,7 +58,7 @@ async function getInitialSwitchValues() {
 // They should both be arrays.
 async function saveToStorage(bools) {
     
-    const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptWhitelistDict"];
+    const lists = ["blacklistDict","spoofWhitelistDict", "redirectWhitelistDict", "cookieWhitelistDict", "javascriptBlacklistDict"];
 
     const rootUrl = await currentUrlAsync(); // This is returning a Promise
     const result = await storageGetAsync(lists); // This is returning a Promise
