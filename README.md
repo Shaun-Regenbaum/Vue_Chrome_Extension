@@ -8,7 +8,7 @@
 2. Go to the chrome extensions page (you can do this through options or simply go to chrome:\\\\extensions).
 3. Turn on Developer Mode on the top right of the page.
 4. Click on the "Load Unpacked" button on the top left of the screen and select the "extension" folder.
-5. That's it, it should be installed and working like a normal chrome extension.
+5. That's it, it should be installed and working like a normal chrome extension (you can also pin it to your broswer bar for easy access).
 
 ## Notes
 In order to use this chrome extension on mobile, you must use a Chromium based mobile browser that allows mobile extensions.
