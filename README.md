@@ -1,5 +1,4 @@
-# Vue_Chrome_Extension
-
+# Vue_Chrome_Extension 🎫
 ### This is a Vue Chrome Extension Boilerplate that demonstrates how to make an HTTP Request Manipulator.
 
 - First of all, this extension **only** works on Chromium based browsers (so Google Chrome, etc...)
@@ -11,7 +10,7 @@
 2. Go to the chrome extensions page (you can do this through options or simply go to chrome:\\\\extensions).
 3. Turn on Developer Mode on the top right of the page.
 4. Click on the "Load Unpacked" button on the top left of the screen and select the "extension" folder.
-5. That's it, it should be installed and working like a normal chrome extension.
+5. That's it, it should be installed and working like a normal chrome extension (you can also pin it to your broswer bar for easy access).
 
 ## Notes
 
