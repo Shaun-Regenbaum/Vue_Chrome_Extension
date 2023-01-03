@@ -1,4 +1,6 @@
 # Vue_Chrome_Extension 🎫
+## ARCHIVED
+I am archiving this as it is very old, and I have no plans on revisiting this any time soon.
 ### This is a Vue Chrome Extension Boilerplate that demonstrates how to make an HTTP Request Manipulator.
 
 - First of all, this extension **only** works on Chromium based browsers (so Google Chrome, etc...)
